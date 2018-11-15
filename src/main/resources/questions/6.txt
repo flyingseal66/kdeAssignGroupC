@@ -1,0 +1,1 @@
+Number of school in the second biggest county.
