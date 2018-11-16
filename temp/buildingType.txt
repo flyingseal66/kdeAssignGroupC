@@ -1,0 +1,321 @@
+<church>
+church/chapel
+church hall/parish hall
+cathedral
+convent/nunnery
+bishop's palace
+monastery
+friary
+cathedral, Roman Catholic
+priory
+prison/jail
+convent/nunnery, Roman Catholic
+Church of Ireland church
+abbey
+gospel hall
+masonic lodge/hall
+church hall/parish hall, Church of Ireland
+oratory
+synagogue
+masonic hall
+presbyterian church
+</church>
+<bridge>
+bridge
+foot bridge
+bridge, railway
+bridge, road
+</bridge>
+<garden>
+walled garden
+garden structure misc
+garden temple
+garden
+</garden>
+<house>
+house
+presbytery/parochial/curate's house
+farm house
+court house
+country house
+worker's house
+guest house/b&b
+barracks
+miller's house
+lighthouse
+lighthouse keeper's house
+hunting/fishing lodge
+manse
+rectory/glebe/vicarage/curate's house
+boathouse
+icehouse
+clubhouse
+summerhouse
+outbuilding
+weighbridge/weighhouse
+teacher's house
+dovecote/pigeon house/aviary
+aviary/dovecote/pigeon house
+steward's house
+castle/fortified house
+public house
+mill manager's house
+nurses' home
+house, private
+almshouse
+orphanage/children's home
+meeting house
+town/county hall
+station master's house
+hall
+market house
+RIC barracks
+workhouse
+glass/green house
+lock keeper's house
+officer's house
+pill box
+prison governor's house
+workhouse administration block
+cottage ornee
+guard house
+custom house
+assembly rooms
+community centre
+malt house
+animal house
+engine house
+hall of residence
+toll house
+turbine house
+coaching inn
+mash house
+theatre/opera house/concert hall
+harbour master's house
+coach house
+hostel (charitable)
+sexton's house
+smokehouse
+belvedere
+apartment/flat (purpose-built)
+air raid shelter
+ballroom/dance hall/disco
+bathhouse
+dormitory building
+apartment/flat (converted)
+nursing/convalescence home
+still house
+lecturer's house
+sweat house
+Orange Hall
+</house>
+<industry>
+post box
+mill (water)
+bank/financial institution
+water pump
+store/warehouse
+locomotive shed
+signal box
+office
+quay/wharf
+pier/jetty
+cinema
+farmyard complex
+creamery
+kiln
+signal tower
+mill (wind)
+harbour/dock/port
+shop/retail outlet
+bank
+post office
+train shed
+bandstand
+public convenience
+platform
+forge/smithy
+weir
+telephone box
+barn
+waterworks
+officers' mess
+factory
+mill (tide)
+crane
+machinery
+distillery
+clock
+laundry
+market place
+mill (tread)
+market building
+workshop
+dairy
+tank/silo
+culm crusher
+dry dock
+bollard
+exchange/tholsel
+aqueduct
+lamp standard
+gasworks
+goods shed
+tannery
+granary
+garage
+wheelguard
+well
+home farm
+gym
+brewery
+rails (section of)
+bakery
+heritage centre/interpretative centre
+abattoir
+battery
+laboratory
+mine/pit
+hangar
+restaurant
+engine shed
+airport
+observatory/telescope
+department store
+sentry box
+vat hall
+fermentation building
+foundry
+shipyard/dockyard
+signal post
+mill, unknown process
+brick fields
+telephone exchange
+store/warehouse , industrial
+amusement arcade
+waterpump
+petrol pump
+mill, food processing
+lime kiln
+</industry>
+<misc>
+monument
+hotel
+building misc
+stables
+mausoleum
+gate lodge
+viaduct
+tunnel
+graveyard/cemetery
+museum/gallery
+folly
+turntable
+unknown
+canal (section of)
+beacon
+watch tower
+water tower
+sluice/sluice gate
+park
+mill race
+grotto
+water trough
+hospital/infirmary
+bell tower/stand
+cross
+milestone/milepost
+obelisk
+shrine/oratory/grotto
+martello tower
+magazine
+level crossing
+lock
+dam/reservoir/basin
+holy well
+fountain
+road (section of)
+vent pipe
+surgery/clinic
+cobbles/flags/paving/kerbing
+steps
+chimney
+turkish baths
+gazebo
+fortification
+funeral home
+benchmark
+kennels
+street name plaque
+pond/lake
+conservatory
+maltings
+battlefield
+sign post
+seat/bench
+canal overflow
+pet cemetery
+ordnance stone/marker
+motte
+towpath
+latrine
+promenade
+mass rock
+arch
+statue
+mortuary/morgue
+detention centre
+ornamental canal/lake
+coast light
+sundial
+day centre
+conference centre
+Grave monument
+Lych gate
+monument, unassigned
+spa well
+</misc>
+<school>
+school
+college
+faculty building
+university
+school master's house
+industrial school
+model school
+library/archive
+exam hall
+charter school
+institute of technology
+crèche/pre-school
+</school>
+<sports>
+handball alley
+sports hall/centre/gymnasium
+sports ground
+</sports>
+<station>
+garda station/constabulary barracks
+coastguard station
+railway station
+hydroelectric power station
+fire station
+filling pump/station
+turf/peat fired power station
+electricity substation
+lifeboat station
+bus station
+boat turning station
+gas fired power station
+customs station
+meteorological station
+semaphore station
+</station>
+<walls>
+gates/railings/walls
+demesne walls/gates/railings
+town/city walls
+prison walls
+walls/gates/railings
+blast walls
+</walls>
