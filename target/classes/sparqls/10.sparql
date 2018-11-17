@@ -1,0 +1,21 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX base: <http://www.gov.ie/groupC/NIAH#>
+
+SELECT ?c ?count ?d
+WHERE
+{
+    SELECT ?c (COUNT(?heritage) AS ?count) ?a ?d
+    WHERE {
+     ?heritage base:inCounty ?c.
+     ?c base:area ?a.
+     ?heritage base:dateFrom ?d
+    }
+    GROUP BY ?c ?a ?d
+    ORDER BY DESC (?a)
+    LIMIT 3
+}
+ORDER BY ?a
+LIMIT 1

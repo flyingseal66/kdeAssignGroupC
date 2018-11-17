@@ -149,7 +149,7 @@ public class OntCreator {
         bridge.addSuperClass(buildingType);
         sports.addSuperClass(buildingType);
         station.addSuperClass(buildingType);
-        station.addSuperClass(buildingType);
+        walls.addSuperClass(buildingType);
         
         
         
@@ -473,10 +473,10 @@ public class OntCreator {
                 String aRating = record.get(15);
                 //String aLocation = record.get();
                 if(record.get(20) == null || record.get(21) == null || record.get(20).trim().equals("") || record.get(21).trim().equals("")) {
-                    System.out.println("Get a null value, record Id:" + aRegNo);
+                    //System.out.println("Get a null value, record Id:" + aRegNo);
                     continue;
                 }
-                System.out.println("aLatitude:" + record.get(20));
+                //System.out.println("aLatitude:" + record.get(20));
                 double aLatitude = Float.parseFloat(record.get(20).trim());
                 double aLongitude = Float.parseFloat(record.get(21).trim());
 

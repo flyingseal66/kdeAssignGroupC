@@ -1,1 +1,1 @@
-Density of schools in each county by ethos.
+Density of heritages in each county by Rating.

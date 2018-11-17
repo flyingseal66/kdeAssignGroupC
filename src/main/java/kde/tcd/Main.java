@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         //FileUtils.fetchData();
 
-        OntCreator.createOntology();
+        //OntCreator.createOntology();
 
         QueryWindow window = new QueryWindow();
         window.launch();
