@@ -572,7 +572,7 @@ public class OntCreator {
                 for (int i = 0; i < countyInfoList.size(); i++) {
                     ArrayList<Object> countyInfo = countyInfoList.get(i);
                     Geometry geometry = (Geometry)countyInfo.get(3);
-                    Point point = new Point(6, 6);
+                    Point point = new Point(aLongitude, aLatitude);
 
                     OperatorWithin within = OperatorWithin.local();
                     if (within.execute(point, geometry, SpatialReference.create("WGS84"), null)) {

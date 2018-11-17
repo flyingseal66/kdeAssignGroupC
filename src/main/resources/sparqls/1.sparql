@@ -7,8 +7,7 @@ PREFIX base: <http://www.gov.ie/groupC/NIAH#>
 
 SELECT ((COUNT(?heritage))/?a AS ?density)
 WHERE {
- ?heritage base:irelandCounty base:DUBLIN.
- base:DUBLIN base:area ?a
-}
-GROUP BY ?a
+  ?heritage base:inCounty base:DUBLIN.
+  base:DUBLIN base:area ?a
+} GROUP BY ?a
 

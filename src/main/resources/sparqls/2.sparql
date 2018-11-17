@@ -6,8 +6,8 @@ PREFIX base: <http://www.cs7is1.com/ireland-school-county#>
 
 SELECT ?c (SUM (?s) AS ?girlCount) ?area
 WHERE {
-    ?school base:inCounty ?c.
-    ?school base:girlCount ?s.
+    ?heritag base:inCounty ?c.
+    ?heritag base:girlCount ?s.
     ?c base:area ?area
 }
 GROUP BY ?c ?area
