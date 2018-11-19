@@ -87,10 +87,10 @@ public class OntCreator {
 
         /*********** subclasses of heritage **********/
 
-        OntClass internationalHeritage = ontModel.createClass(NAMESPACE + "InternationalHeritege");
+        OntClass internationalHeritage = ontModel.createClass(NAMESPACE + "InternationalHeritage");
         OntClass nationalHeritage = ontModel.createClass(NAMESPACE + "NationalHeritage");
         OntClass regionalHeritage = ontModel.createClass(NAMESPACE + "RegionalHeritage");
-        internationalHeritage.addLabel("InternationalHeritege", null);
+        internationalHeritage.addLabel("InternationalHeritage", null);
         internationalHeritage.addComment("International Heritage", null);
         nationalHeritage.addLabel("NationalHeritage", null);
         nationalHeritage.addComment("NationalHeritage", null);
@@ -282,44 +282,44 @@ public class OntCreator {
         gardenHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,garden));
 
         OntClass houseHeritage = ontModel.createClass(NAMESPACE + "houseHeritage");
-        houseHeritage.addLabel("Heritage Building of origin type Garden",null);
-        houseHeritage.addComment("Heritage building definition whose building type is Garden",null);
+        houseHeritage.addLabel("Heritage Building of origin type house",null);
+        houseHeritage.addComment("Heritage building definition whose building type is house",null);
         houseHeritage.addSuperClass(heritage);
         houseHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,house));
 
         OntClass industryHeritage = ontModel.createClass(NAMESPACE + "industryHeritage");
-        industryHeritage.addLabel("Heritage Building of origin type Garden",null);
-        industryHeritage.addComment("Heritage building definition whose building type is Garden",null);
+        industryHeritage.addLabel("Heritage Building of origin type industry",null);
+        industryHeritage.addComment("Heritage building definition whose building type is industry",null);
         industryHeritage.addSuperClass(heritage);
         industryHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,industry));
 
         OntClass miscHeritage = ontModel.createClass(NAMESPACE + "miscHeritage");
-        miscHeritage.addLabel("Heritage Building of origin type Garden",null);
-        miscHeritage.addComment("Heritage building definition whose building type is Garden",null);
+        miscHeritage.addLabel("Heritage Building of origin type misc",null);
+        miscHeritage.addComment("Heritage building definition whose building type is misc",null);
         miscHeritage.addSuperClass(heritage);
         miscHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,misc));
 
         OntClass schoolHeritage = ontModel.createClass(NAMESPACE + "schoolHeritage");
-        schoolHeritage.addLabel("Heritage Building of origin type Garden",null);
-        schoolHeritage.addComment("Heritage building definition whose building type is Garden",null);
+        schoolHeritage.addLabel("Heritage Building of origin type school",null);
+        schoolHeritage.addComment("Heritage building definition whose building type is school",null);
         schoolHeritage.addSuperClass(heritage);
         schoolHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,school));
 
         OntClass sportsHeritage = ontModel.createClass(NAMESPACE + "sportsHeritage");
-        sportsHeritage.addLabel("Heritage Building of origin type Garden",null);
-        sportsHeritage.addComment("Heritage building definition whose building type is Garden",null);
+        sportsHeritage.addLabel("Heritage Building of origin type sports",null);
+        sportsHeritage.addComment("Heritage building definition whose building type is sports",null);
         sportsHeritage.addSuperClass(heritage);
         sportsHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,sports));
 
         OntClass stationHeritage = ontModel.createClass(NAMESPACE + "stationHeritage");
-        stationHeritage.addLabel("Heritage Building of origin type Garden",null);
-        stationHeritage.addComment("Heritage building definition whose building type is Garden",null);
+        stationHeritage.addLabel("Heritage Building of origin type station",null);
+        stationHeritage.addComment("Heritage building definition whose building type is station",null);
         stationHeritage.addSuperClass(heritage);
         stationHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,station));
 
         OntClass wallsHeritage = ontModel.createClass(NAMESPACE + "wallsHeritage");
-        wallsHeritage.addLabel("Heritage Building of origin type Garden",null);
-        wallsHeritage.addComment("Heritage building definition whose building type is Garden",null);
+        wallsHeritage.addLabel("Heritage Building of origin type walls",null);
+        wallsHeritage.addComment("Heritage building definition whose building type is walls",null);
         wallsHeritage.addSuperClass(heritage);
         wallsHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,walls));
 
@@ -330,7 +330,7 @@ public class OntCreator {
         catholicSchool.addSuperClass(ontModel.createHasValueRestriction(null, withBuildingType, catholic));
 
         Literal zero = ontModel.createTypedLiteral(0);
-        internationalHeritege.addSuperClass(ontModel.createHasValueRestriction(null, internationalCount, zero));
+        internationalHeritage.addSuperClass(ontModel.createHasValueRestriction(null, internationalCount, zero));
         nationalHeritege.addSuperClass(ontModel.createHasValueRestriction(null, nationalCount, zero));*/
 
         // County property
@@ -473,21 +473,22 @@ public class OntCreator {
                 String aXCoord = record.get(16);
                 String aYCoord = record.get(17);
                 String aImageLink = record.get(22);
-                String aRating = record.get(15);
+                String aoriginalType = record.get(15);
+                String aRating = record.get(14);
                 //String aLocation = record.get();
                 if(record.get(20) == null || record.get(21) == null || record.get(20).trim().equals("") || record.get(21).trim().equals("")) {
                     //System.out.println("Get a null value, record Id:" + aRegNo);
                     continue;
                 }
                 //System.out.println("aLatitude:" + record.get(20));
-                double aLatitude = Float.parseFloat(record.get(20).trim());
-                double aLongitude = Float.parseFloat(record.get(21).trim());
+                float aLatitude = Float.parseFloat(record.get(20).trim());
+                float aLongitude = Float.parseFloat(record.get(21).trim());
 
                 Individual aLocation = geogLocation.createIndividual();
                 aLocation.addLiteral(latitude, aLatitude);
                 aLocation.addLiteral(longitude, aLongitude);
 
-                Individual aCounty = irelandCounty.createIndividual(NAMESPACE + "CAVAN");
+                //Individual aCounty = irelandCounty.createIndividual(NAMESPACE + "CAVAN");
                 //<TODO: Need to populate rest of county data>
 
                 FileInputStream fs = new FileInputStream("temp/buildingType.txt");
@@ -511,7 +512,7 @@ public class OntCreator {
                 if (map != null) {
 
                     for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-                        if (entry.getValue().contains(aRating)) {
+                        if (entry.getValue().contains(aoriginalType)) {
                             key = entry.getKey();
                         }
                     }
@@ -553,12 +554,6 @@ public class OntCreator {
                 } else {
                     aHeritage = internationalHeritage.createIndividual(NAMESPACE + aRegNo);
                 }
-                aHeritage.addOntClass(heritage);
-                //change this instance
-                if (key.equals("church")) {
-                    aHeritage.addOntClass(churchHeritage);
-                }
-
                 aHeritage.addOntClass(heritage);
                 aHeritage.addLiteral(RDFS.label, aRegNo);
                 aHeritage.addLiteral(regNo, aRegNo);
