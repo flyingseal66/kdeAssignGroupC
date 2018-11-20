@@ -26,137 +26,137 @@ public class OntCreator {
         ontModel.setNsPrefix("base", NAMESPACE);
 
         Ontology ontology = ontModel.createOntology(BASE_URI);
-        ontology.addLabel("national-inventory-of-architectural-heritage-county", null);
+        ontology.addLabel("national-inventory-of-architectural-Heritage-county", null);
         String comment = "National Inventory of Architectural Heritage. ";
         ontology.addComment( comment, null);
-        ontology.addProperty(DCTerms.creator, "Rajesh");
+        ontology.addProperty(DCTerms.creator, "Baolei, Rajesh, Sourojit");
         ontology.addProperty(DCTerms.date, "15/11/2018");
         ontology.addProperty(OWL2.versionInfo, "1.0.0");
         ontology.addProperty(DCTerms.description, comment);
 
-        // geogLocation Class
+        // GeogLocation Class
 
-        OntClass geogLocation = ontModel.createClass(NAMESPACE + "GeoLocation");
-        geogLocation.addLabel("GeoLocation", null);
-        geogLocation.addComment("Geographic location contains a latitude and a longitude", null);
+        OntClass GeogLocation = ontModel.createClass(NAMESPACE + "GeoLocation");
+        GeogLocation.addLabel("GeoLocation", null);
+        GeogLocation.addComment("Geographic location contains a latitude and a longitude", null);
 
         DatatypeProperty latitude = ontModel.createDatatypeProperty(NAMESPACE + "latitude");
         DatatypeProperty longitude = ontModel.createDatatypeProperty(NAMESPACE + "longitude");
         latitude.addLabel("latitude", null);
         latitude.addComment("Geographic latitude", null);
-        latitude.setDomain(geogLocation);
+        latitude.setDomain(GeogLocation);
         latitude.setRange(XSD.xfloat);
-        latitude.addLabel("longitude", null);
-        latitude.addComment("Geographic longitude", null);
-        longitude.setDomain(geogLocation);
+        longitude.addLabel("longitude", null);
+        longitude.addComment("Geographic longitude", null);
+        longitude.setDomain(GeogLocation);
         longitude.setRange(XSD.xfloat);
 
-        geogLocation.addSuperClass(ontModel.createCardinalityRestriction(null, latitude, 1));
-        geogLocation.addSuperClass(ontModel.createCardinalityRestriction(null, longitude, 1));
+        GeogLocation.addSuperClass(ontModel.createCardinalityRestriction(null, latitude, 1));
+        GeogLocation.addSuperClass(ontModel.createCardinalityRestriction(null, longitude, 1));
 
 
-        /****************** irelandCounty Class *******************/
+        /****************** IrelandCounty Class *******************/
 
-        OntClass irelandCounty = ontModel.createClass(NAMESPACE + "irelandCounty");
-        irelandCounty.addLabel("irelandCounty", null);
-        irelandCounty.addComment("Ireland Counties, can be distinguished by their names", null);
+        OntClass IrelandCounty = ontModel.createClass(NAMESPACE + "IrelandCounty");
+        IrelandCounty.addLabel("IrelandCounty", null);
+        IrelandCounty.addComment("Ireland Counties, can be distinguished by their names", null);
 
         // RDFS: label for name
 
         DatatypeProperty area = ontModel.createDatatypeProperty(NAMESPACE + "area");
         area.addLabel("area", null);
         area.addComment("Define area of a county", null);
-        area.setDomain(irelandCounty);
+        area.setDomain(IrelandCounty);
         area.setRange(XSD.xfloat);
 
         SymmetricProperty adjacentTo = ontModel.createSymmetricProperty(NAMESPACE + "adjacentTo");
         adjacentTo.addLabel("adjacentTo", null);
         adjacentTo.addComment("List other counties that is geographically touch with current county", null);
-        adjacentTo.setDomain(irelandCounty);
-        adjacentTo.setRange(irelandCounty);
+        adjacentTo.setDomain(IrelandCounty);
+        adjacentTo.setRange(IrelandCounty);
 
         TransitiveProperty biggerThan = ontModel.createTransitiveProperty(NAMESPACE + "biggerThan");
         biggerThan.addLabel("biggerThan", null);
         biggerThan.addComment("List other counties that current county's area is bigger than", null);
-        biggerThan.setDomain(irelandCounty);
-        biggerThan.setRange(irelandCounty);
+        biggerThan.setDomain(IrelandCounty);
+        biggerThan.setRange(IrelandCounty);
 
-        irelandCounty.addSuperClass(ontModel.createCardinalityRestriction(null, area, 1));
+        IrelandCounty.addSuperClass(ontModel.createCardinalityRestriction(null, area, 1));
 
-        /*********** subclasses of heritage **********/
+        /*********** subclasses of Heritage **********/
 
-        OntClass internationalHeritage = ontModel.createClass(NAMESPACE + "InternationalHeritage");
-        OntClass nationalHeritage = ontModel.createClass(NAMESPACE + "NationalHeritage");
-        OntClass regionalHeritage = ontModel.createClass(NAMESPACE + "RegionalHeritage");
-        internationalHeritage.addLabel("InternationalHeritage", null);
-        internationalHeritage.addComment("International Heritage", null);
-        nationalHeritage.addLabel("NationalHeritage", null);
-        nationalHeritage.addComment("NationalHeritage", null);
-        regionalHeritage.addLabel("RegionalHeritage", null);
-        regionalHeritage.addComment("regionalHeritage", null);
+        OntClass InternationalHeritage = ontModel.createClass(NAMESPACE + "InternationalHeritage");
+        OntClass NationalHeritage = ontModel.createClass(NAMESPACE + "NationalHeritage");
+        OntClass RegionalHeritage = ontModel.createClass(NAMESPACE + "RegionalHeritage");
+        InternationalHeritage.addLabel("InternationalHeritage", null);
+        InternationalHeritage.addComment("International Heritage", null);
+        NationalHeritage.addLabel("NationalHeritage", null);
+        NationalHeritage.addComment("NationalHeritage", null);
+        RegionalHeritage.addLabel("RegionalHeritage", null);
+        RegionalHeritage.addComment("RegionalHeritage", null);
 
-        RDFList list = ontModel.createList(new RDFNode[]{internationalHeritage, nationalHeritage, regionalHeritage});
-        internationalHeritage.addDisjointWith(nationalHeritage);
-        regionalHeritage.addDisjointWith(internationalHeritage);
-        regionalHeritage.addDisjointWith(nationalHeritage);
+        RDFList list = ontModel.createList(new RDFNode[]{InternationalHeritage, NationalHeritage, RegionalHeritage});
+        InternationalHeritage.addDisjointWith(NationalHeritage);
+        RegionalHeritage.addDisjointWith(InternationalHeritage);
+        RegionalHeritage.addDisjointWith(NationalHeritage);
 
         /***********Building Type Class **********/
-        OntClass school = ontModel.createClass(NAMESPACE + "school");
-        OntClass church = ontModel.createClass(NAMESPACE + "church");
-        OntClass garden = ontModel.createClass(NAMESPACE + "garden");
-        OntClass house = ontModel.createClass(NAMESPACE + "house");
-        OntClass industry = ontModel.createClass(NAMESPACE + "industry");
-        OntClass misc = ontModel.createClass(NAMESPACE + "misc");
-        OntClass bridge = ontModel.createClass(NAMESPACE + "bridge");
-        OntClass sports = ontModel.createClass(NAMESPACE + "sports");
-        OntClass station = ontModel.createClass(NAMESPACE + "station");
-        OntClass walls = ontModel.createClass(NAMESPACE + "walls");
-        school.addLabel("school", null);
-        church.addLabel("church", null);
-        garden.addLabel("garden", null);
-        house.addLabel("house", null);
-        industry.addLabel("industry", null);
-        misc.addLabel("misc", null);
-        bridge.addLabel("bridge", null);
-        sports.addLabel("sports", null);
-        station.addLabel("station", null);
-        walls.addLabel("walls", null);
-        school.addComment("school", null);
-        church.addComment("church", null);
-        garden.addComment("garden", null);
-        house.addComment("house", null);
-        industry.addComment("industry", null);
-        misc.addComment("misc", null);
-        bridge.addComment("bridge", null);
-        sports.addComment("sports", null);
-        station.addComment("station", null);
-        walls.addComment("walls", null);
+        OntClass School = ontModel.createClass(NAMESPACE + "School");
+        OntClass Church = ontModel.createClass(NAMESPACE + "Church");
+        OntClass Garden = ontModel.createClass(NAMESPACE + "Garden");
+        OntClass House = ontModel.createClass(NAMESPACE + "House");
+        OntClass Industry = ontModel.createClass(NAMESPACE + "Industry");
+        OntClass Misc = ontModel.createClass(NAMESPACE + "Misc");
+        OntClass Bridge = ontModel.createClass(NAMESPACE + "Bridge");
+        OntClass Sports = ontModel.createClass(NAMESPACE + "Sports");
+        OntClass Station = ontModel.createClass(NAMESPACE + "Station");
+        OntClass Walls = ontModel.createClass(NAMESPACE + "Walls");
+        School.addLabel("School", null);
+        Church.addLabel("Church", null);
+        Garden.addLabel("Garden", null);
+        House.addLabel("House", null);
+        Industry.addLabel("Industry", null);
+        Misc.addLabel("Misc", null);
+        Bridge.addLabel("Bridge", null);
+        Sports.addLabel("Sports", null);
+        Station.addLabel("Station", null);
+        Walls.addLabel("Walls", null);
+        School.addComment("School", null);
+        Church.addComment("Church", null);
+        Garden.addComment("Garden", null);
+        House.addComment("House", null);
+        Industry.addComment("Industry", null);
+        Misc.addComment("Misc", null);
+        Bridge.addComment("Bridge", null);
+        Sports.addComment("Sports", null);
+        Station.addComment("Station", null);
+        Walls.addComment("Walls", null);
 
 
-        RDFList buildingTypeList = ontModel.createList(new RDFNode[]{bridge, church, garden, house, industry, misc, school, sports, station, walls});
-        OntClass buildingType = ontModel.createEnumeratedClass(NAMESPACE+"BuildingType", buildingTypeList);
-        buildingType.addLabel("Building Type", null);
-        buildingType.addComment("Building Type", null);
+        RDFList buildingTypeList = ontModel.createList(new RDFNode[]{Bridge, Church, Garden, House, Industry, Misc, School, Sports, Station, Walls});
+        OntClass BuildingType = ontModel.createEnumeratedClass(NAMESPACE+"BuildingType", buildingTypeList);
+        BuildingType.addLabel("Building Type", null);
+        BuildingType.addComment("Building Type", null);
         
-        school.addSuperClass(buildingType);
-        church.addSuperClass(buildingType);
-        garden.addSuperClass(buildingType);
-        house.addSuperClass(buildingType);
-        industry.addSuperClass(buildingType);
-        misc.addSuperClass(buildingType);
-        bridge.addSuperClass(buildingType);
-        sports.addSuperClass(buildingType);
-        station.addSuperClass(buildingType);
-        walls.addSuperClass(buildingType);
+        School.addSuperClass(BuildingType);
+        Church.addSuperClass(BuildingType);
+        Garden.addSuperClass(BuildingType);
+        House.addSuperClass(BuildingType);
+        Industry.addSuperClass(BuildingType);
+        Misc.addSuperClass(BuildingType);
+        Bridge.addSuperClass(BuildingType);
+        Sports.addSuperClass(BuildingType);
+        Station.addSuperClass(BuildingType);
+        Walls.addSuperClass(BuildingType);
         
         
         
 
         /***************** Heritage Class *******************/
 
-        OntClass heritage = ontModel.createUnionClass(NAMESPACE + "Heritage", list);
-        heritage.addLabel("Heritage", null);
-        heritage.addComment("The National Inventory of Architectural Heritage (NIAH) is a state initiative " +
+        OntClass Heritage = ontModel.createUnionClass(NAMESPACE + "Heritage", list);
+        Heritage.addLabel("Heritage", null);
+        Heritage.addComment("The National Inventory of Architectural Heritage (NIAH) is a state initiative " +
                 "under the administration of the Department of Arts, Heritage, Regional, Rural and Gaeltacht Affairs " +
                 "and established on a statutory basis under the provisions of the Architectural Heritage (National Inventory) " +
                 "and Historic Monuments (Miscellaneous Provisions) Act 1999", null);
@@ -166,196 +166,188 @@ public class OntCreator {
         DatatypeProperty address = ontModel.createDatatypeProperty(NAMESPACE + "address");
         address.addLabel("address", null);
         address.addComment("Address of Heritage, described by a text", null);
-        address.setDomain(heritage);
+        address.setDomain(Heritage);
         address.setRange(XSD.xstring);
 
         DatatypeProperty regNo = ontModel.createDatatypeProperty(NAMESPACE + "regNo");
         regNo.addLabel("regNo", null);
-        regNo.addComment("Registration Number of a heritage", null);
-        regNo.setDomain(heritage);
+        regNo.addComment("Registration Number of a Heritage", null);
+        regNo.setDomain(Heritage);
         regNo.setRange(XSD.xstring);
 
         DatatypeProperty heritageName = ontModel.createDatatypeProperty(NAMESPACE + "heritageName");
         heritageName.addLabel("heritageName", null);
         heritageName.addComment("Name of Heritage, described by a text", null);
-        heritageName.setDomain(heritage);
+        heritageName.setDomain(Heritage);
         heritageName.setRange(XSD.xstring);
 
         DatatypeProperty composition = ontModel.createDatatypeProperty(NAMESPACE + "composition");
         composition.addLabel("composition", null);
-        composition.addComment("Composition of a heritage", null);
-        composition.setDomain(heritage);
+        composition.addComment("Composition of a Heritage", null);
+        composition.setDomain(Heritage);
         composition.setRange(XSD.xstring);
 
         DatatypeProperty appraisal = ontModel.createDatatypeProperty(NAMESPACE + "appraisal");
         appraisal.addLabel("appraisal", null);
-        appraisal.addComment("appraisal of a heritage", null);
-        appraisal.setDomain(heritage);
+        appraisal.addComment("appraisal of a Heritage", null);
+        appraisal.setDomain(Heritage);
         appraisal.setRange(XSD.xstring);
 
         DatatypeProperty dateFrom = ontModel.createDatatypeProperty(NAMESPACE + "dateFrom");
         dateFrom.addLabel("dateFrom", null);
-        dateFrom.addComment("Start date of construction of a heritage", null);
-        dateFrom.setDomain(heritage);
+        dateFrom.addComment("Start date of construction of a Heritage", null);
+        dateFrom.setDomain(Heritage);
         dateFrom.setRange(XSD.xstring);
 
         DatatypeProperty dateTo = ontModel.createDatatypeProperty(NAMESPACE + "dateTo");
         dateTo.addLabel("dateTo", null);
-        dateTo.addComment("End date of construction of a heritage", null);
-        dateTo.setDomain(heritage);
+        dateTo.addComment("End date of construction of a Heritage", null);
+        dateTo.setDomain(Heritage);
         dateTo.setRange(XSD.xstring);
 
         DatatypeProperty rating = ontModel.createDatatypeProperty(NAMESPACE + "rating");
         rating.addLabel("rating", null);
-        rating.addComment("Rating a heritage", null);
-        rating.setDomain(heritage);
+        rating.addComment("Rating a Heritage", null);
+        rating.setDomain(Heritage);
         rating.setRange(XSD.xstring);
 
         DatatypeProperty originalType = ontModel.createDatatypeProperty(NAMESPACE + "originalType");
         originalType.addLabel("originalType", null);
-        originalType.addComment("Original type a heritage", null);
-        originalType.setDomain(heritage);
+        originalType.addComment("Original type a Heritage", null);
+        originalType.setDomain(Heritage);
         originalType.setRange(XSD.xstring);
 
         DatatypeProperty xCoord = ontModel.createDatatypeProperty(NAMESPACE + "xCoord");
         xCoord.addLabel("xCoord", null);
-        xCoord.addComment("x coordinate of a heritage", null);
-        xCoord.setDomain(heritage);
+        xCoord.addComment("x coordinate of a Heritage", null);
+        xCoord.setDomain(Heritage);
         xCoord.setRange(XSD.xstring);
 
         DatatypeProperty yCoord = ontModel.createDatatypeProperty(NAMESPACE + "yCoord");
         yCoord.addLabel("yCoord", null);
-        yCoord.addComment("y coordinate of a heritage", null);
-        yCoord.setDomain(heritage);
+        yCoord.addComment("y coordinate of a Heritage", null);
+        yCoord.setDomain(Heritage);
         yCoord.setRange(XSD.xstring);
 
         DatatypeProperty imageLink = ontModel.createDatatypeProperty(NAMESPACE + "imageLink");
         imageLink.addLabel("imageLink", null);
-        imageLink.addComment("imageLink of a heritage", null);
-        imageLink.setDomain(heritage);
+        imageLink.addComment("imageLink of a Heritage", null);
+        imageLink.setDomain(Heritage);
         imageLink.setRange(XSD.xstring);
 
         ObjectProperty location = ontModel.createObjectProperty(NAMESPACE + "location");
         location.addLabel("location", null);
-        location.addComment("Geographic location of a heritage, described by a GeoLocation", null);
-        location.setDomain(heritage);
-        location.setRange(geogLocation);
+        location.addComment("Geographic location of a Heritage, described by a GeoLocation", null);
+        location.setDomain(Heritage);
+        location.setRange(GeogLocation);
 
         ObjectProperty inCounty = ontModel.createObjectProperty(NAMESPACE + "inCounty");
         inCounty.addLabel("inCounty", null);
-        inCounty.addComment("Which ireland county the heritage belongs to", null);
-        inCounty.setDomain(heritage);
-        inCounty.setRange(irelandCounty);
+        inCounty.addComment("Which ireland county the Heritage belongs to", null);
+        inCounty.setDomain(Heritage);
+        inCounty.setRange(IrelandCounty);
 
 
         DatatypeProperty withBuildingType = ontModel.createDatatypeProperty(NAMESPACE + "withBuildingType");
         withBuildingType.addLabel("withBuildingType", null);
-        withBuildingType.addComment("Building type of heritage monument", null);
-        withBuildingType.setDomain(heritage);
-        withBuildingType.setRange(buildingType);
+        withBuildingType.addComment("Building type of Heritage monument", null);
+        withBuildingType.setDomain(Heritage);
+        withBuildingType.setRange(BuildingType);
 
         // Subclasses setup
-        internationalHeritage.addSuperClass(heritage);
-        nationalHeritage.addSuperClass(heritage);
-        regionalHeritage.addSuperClass(heritage);
+        InternationalHeritage.addSuperClass(Heritage);
+        NationalHeritage.addSuperClass(Heritage);
+        RegionalHeritage.addSuperClass(Heritage);
 
         //Describing by building type
 
-        OntClass bridgeHeritage = ontModel.createClass(NAMESPACE + "bridgeHeritage");
-        bridgeHeritage.addLabel("Heritage Building of origin type Bridge",null);
-        bridgeHeritage.addComment("Heritage building definition whose building type is Bridge",null);
-        bridgeHeritage.addSuperClass(heritage);
-        bridgeHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,bridge));
+        OntClass BridgeHeritage = ontModel.createClass(NAMESPACE + "BridgeHeritage");
+        BridgeHeritage.addLabel("Heritage Building of origin type Bridge",null);
+        BridgeHeritage.addComment("Heritage building definition whose building type is Bridge",null);
+        BridgeHeritage.addSuperClass(Heritage);
+        BridgeHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,Bridge));
 
-        OntClass churchHeritage = ontModel.createClass(NAMESPACE + "churchHeritage");
-        churchHeritage.addLabel("Heritage Building of origin type Church",null);
-        churchHeritage.addComment("Heritage building definition whose building type is Church",null);
-        churchHeritage.addSuperClass(heritage);
-        churchHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,church));
+        OntClass ChurchHeritage = ontModel.createClass(NAMESPACE + "ChurchHeritage");
+        ChurchHeritage.addLabel("Heritage Building of origin type Church",null);
+        ChurchHeritage.addComment("Heritage building definition whose building type is Church",null);
+        ChurchHeritage.addSuperClass(Heritage);
+        ChurchHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,Church));
 
-        OntClass gardenHeritage = ontModel.createClass(NAMESPACE + "gardenHeritage");
-        gardenHeritage.addLabel("Heritage Building of origin type Garden",null);
-        gardenHeritage.addComment("Heritage building definition whose building type is Garden",null);
-        gardenHeritage.addSuperClass(heritage);
-        gardenHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,garden));
+        OntClass GardenHeritage = ontModel.createClass(NAMESPACE + "GardenHeritage");
+        GardenHeritage.addLabel("Heritage Building of origin type Garden",null);
+        GardenHeritage.addComment("Heritage building definition whose building type is Garden",null);
+        GardenHeritage.addSuperClass(Heritage);
+        GardenHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,Garden));
 
-        OntClass houseHeritage = ontModel.createClass(NAMESPACE + "houseHeritage");
-        houseHeritage.addLabel("Heritage Building of origin type house",null);
-        houseHeritage.addComment("Heritage building definition whose building type is house",null);
-        houseHeritage.addSuperClass(heritage);
-        houseHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,house));
+        OntClass HouseHeritage = ontModel.createClass(NAMESPACE + "HouseHeritage");
+        HouseHeritage.addLabel("Heritage Building of origin type House",null);
+        HouseHeritage.addComment("Heritage building definition whose building type is House",null);
+        HouseHeritage.addSuperClass(Heritage);
+        HouseHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,House));
 
-        OntClass industryHeritage = ontModel.createClass(NAMESPACE + "industryHeritage");
-        industryHeritage.addLabel("Heritage Building of origin type industry",null);
-        industryHeritage.addComment("Heritage building definition whose building type is industry",null);
-        industryHeritage.addSuperClass(heritage);
-        industryHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,industry));
+        OntClass IndustryHeritage = ontModel.createClass(NAMESPACE + "IndustryHeritage");
+        IndustryHeritage.addLabel("Heritage Building of origin type Industry",null);
+        IndustryHeritage.addComment("Heritage building definition whose building type is Industry",null);
+        IndustryHeritage.addSuperClass(Heritage);
+        IndustryHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,Industry));
 
-        OntClass miscHeritage = ontModel.createClass(NAMESPACE + "miscHeritage");
-        miscHeritage.addLabel("Heritage Building of origin type misc",null);
-        miscHeritage.addComment("Heritage building definition whose building type is misc",null);
-        miscHeritage.addSuperClass(heritage);
-        miscHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,misc));
+        OntClass MiscHeritage = ontModel.createClass(NAMESPACE + "MiscHeritage");
+        MiscHeritage.addLabel("Heritage Building of origin type Misc",null);
+        MiscHeritage.addComment("Heritage building definition whose building type is Misc",null);
+        MiscHeritage.addSuperClass(Heritage);
+        MiscHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,Misc));
 
-        OntClass schoolHeritage = ontModel.createClass(NAMESPACE + "schoolHeritage");
-        schoolHeritage.addLabel("Heritage Building of origin type school",null);
-        schoolHeritage.addComment("Heritage building definition whose building type is school",null);
-        schoolHeritage.addSuperClass(heritage);
-        schoolHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,school));
+        OntClass SchoolHeritage = ontModel.createClass(NAMESPACE + "SchoolHeritage");
+        SchoolHeritage.addLabel("Heritage Building of origin type School",null);
+        SchoolHeritage.addComment("Heritage building definition whose building type is School",null);
+        SchoolHeritage.addSuperClass(Heritage);
+        SchoolHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,School));
 
-        OntClass sportsHeritage = ontModel.createClass(NAMESPACE + "sportsHeritage");
-        sportsHeritage.addLabel("Heritage Building of origin type sports",null);
-        sportsHeritage.addComment("Heritage building definition whose building type is sports",null);
-        sportsHeritage.addSuperClass(heritage);
-        sportsHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,sports));
+        OntClass SportsHeritage = ontModel.createClass(NAMESPACE + "SportsHeritage");
+        SportsHeritage.addLabel("Heritage Building of origin type Sports",null);
+        SportsHeritage.addComment("Heritage building definition whose building type is Sports",null);
+        SportsHeritage.addSuperClass(Heritage);
+        SportsHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,Sports));
 
-        OntClass stationHeritage = ontModel.createClass(NAMESPACE + "stationHeritage");
-        stationHeritage.addLabel("Heritage Building of origin type station",null);
-        stationHeritage.addComment("Heritage building definition whose building type is station",null);
-        stationHeritage.addSuperClass(heritage);
-        stationHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,station));
+        OntClass StationHeritage = ontModel.createClass(NAMESPACE + "StationHeritage");
+        StationHeritage.addLabel("Heritage Building of origin type Station",null);
+        StationHeritage.addComment("Heritage building definition whose building type is Station",null);
+        StationHeritage.addSuperClass(Heritage);
+        StationHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,Station));
 
-        OntClass wallsHeritage = ontModel.createClass(NAMESPACE + "wallsHeritage");
-        wallsHeritage.addLabel("Heritage Building of origin type walls",null);
-        wallsHeritage.addComment("Heritage building definition whose building type is walls",null);
-        wallsHeritage.addSuperClass(heritage);
-        wallsHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,walls));
+        OntClass WallsHeritage = ontModel.createClass(NAMESPACE + "WallsHeritage");
+        WallsHeritage.addLabel("Heritage Building of origin type Walls",null);
+        WallsHeritage.addComment("Heritage building definition whose building type is Walls",null);
+        WallsHeritage.addSuperClass(Heritage);
+        WallsHeritage.addSuperClass(ontModel.createHasValueRestriction(null,withBuildingType,Walls));
 
-        /*OntClass catholicSchool = ontModel.createClass(NAMESPACE + "CatholicSchool");
-        catholicSchool.addLabel("CatholicSchool", null);
-        catholicSchool.addComment("School class definition which ethos is Catholic", null);
-        catholicSchool.addSuperClass(school);
-        catholicSchool.addSuperClass(ontModel.createHasValueRestriction(null, withBuildingType, catholic));
 
-        Literal zero = ontModel.createTypedLiteral(0);
-        internationalHeritage.addSuperClass(ontModel.createHasValueRestriction(null, internationalCount, zero));
-        nationalHeritege.addSuperClass(ontModel.createHasValueRestriction(null, nationalCount, zero));*/
 
         // County property
 
         ObjectProperty hasHeritages = ontModel.createObjectProperty(NAMESPACE + "hasHeritages");
         hasHeritages.addLabel("hasHeritages", null);
         hasHeritages.addComment("List heritages belongs to the county", null);
-        hasHeritages.setDomain(irelandCounty);
-        hasHeritages.setRange(heritage);
+        hasHeritages.setDomain(IrelandCounty);
+        hasHeritages.setRange(Heritage);
         hasHeritages.addInverseOf(inCounty);
 
         /************** Heritage Cardinality Restrictions **************/
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, address, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, regNo, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, heritageName, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, composition, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, appraisal, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, dateFrom, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, dateTo, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, rating, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, originalType, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, xCoord, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, yCoord, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, imageLink, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, location, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, inCounty, 1));
-        heritage.addSuperClass(ontModel.createCardinalityRestriction(null, withBuildingType, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, address, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, regNo, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, heritageName, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, composition, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, appraisal, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, dateFrom, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, dateTo, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, rating, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, originalType, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, xCoord, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, yCoord, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, imageLink, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, location, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, inCounty, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, withBuildingType, 1));
 
 
 
@@ -425,7 +417,7 @@ public class OntCreator {
 
         ArrayList<Individual> countyIndiList = new ArrayList<>();
         for (ArrayList<Object> info : countyInfoList) {
-            Individual aCounty = irelandCounty.createIndividual(NAMESPACE + info.get(0).toString().replace(" ", ""));
+            Individual aCounty = IrelandCounty.createIndividual(NAMESPACE + info.get(0).toString().replace(" ", ""));
             aCounty.addLabel((String)info.get(0), null);
             aCounty.addLabel((String)info.get(1), "en");
             aCounty.addLabel((String)info.get(2), "ga");
@@ -482,14 +474,14 @@ public class OntCreator {
                 float aLatitude = Float.parseFloat(record.get(20).trim());
                 float aLongitude = Float.parseFloat(record.get(21).trim());
 
-                Individual aLocation = geogLocation.createIndividual();
+                Individual aLocation = GeogLocation.createIndividual();
                 aLocation.addLiteral(latitude, aLatitude);
                 aLocation.addLiteral(longitude, aLongitude);
 
-                //Individual aCounty = irelandCounty.createIndividual(NAMESPACE + "CAVAN");
+                //Individual aCounty = IrelandCounty.createIndividual(NAMESPACE + "CAVAN");
                 //<TODO: Need to populate rest of county data>
 
-                FileInputStream fs = new FileInputStream("temp/buildingType.txt");
+                FileInputStream fs = new FileInputStream("temp/BuildingType.txt");
                 BufferedReader br = new BufferedReader(new InputStreamReader(fs));
                 String line = "";
                 Map<String, List<String>> map=new HashMap<>();
@@ -518,41 +510,41 @@ public class OntCreator {
                // Class.forName(key).getClass();
                 Individual aBuildingType;
                 if(key == null) continue;
-                if (key.equals("church")) {
-                    aBuildingType = church.createIndividual();
-                } else if (key.equals("bridge")) {
-                    aBuildingType = bridge.createIndividual();
-                } else if (key.equals("garden")) {
-                    aBuildingType = garden.createIndividual();
-                } else if (key.equals("house")) {
-                    aBuildingType = house.createIndividual();
-                } else if (key.equals("industry")) {
-                    aBuildingType = industry.createIndividual();
-                } else if (key.equals("misc")) {
-                    aBuildingType = misc.createIndividual();
-                } else if (key.equals("school")) {
-                    aBuildingType = school.createIndividual();
-                } else if (key.equals("sports")) {
-                    aBuildingType = sports.createIndividual();
-                }else if (key.equals("station")) {
-                    aBuildingType = station.createIndividual();
-                }else if (key.equals("walls")) {
-                    aBuildingType = walls.createIndividual();
+                if (key.equals("Church")) {
+                    aBuildingType = Church.createIndividual();
+                } else if (key.equals("Bridge")) {
+                    aBuildingType = Bridge.createIndividual();
+                } else if (key.equals("Garden")) {
+                    aBuildingType = Garden.createIndividual();
+                } else if (key.equals("House")) {
+                    aBuildingType = House.createIndividual();
+                } else if (key.equals("Industry")) {
+                    aBuildingType = Industry.createIndividual();
+                } else if (key.equals("Misc")) {
+                    aBuildingType = Misc.createIndividual();
+                } else if (key.equals("School")) {
+                    aBuildingType = School.createIndividual();
+                } else if (key.equals("Sports")) {
+                    aBuildingType = Sports.createIndividual();
+                }else if (key.equals("Station")) {
+                    aBuildingType = Station.createIndividual();
+                }else if (key.equals("Walls")) {
+                    aBuildingType = Walls.createIndividual();
                 } else {
                     continue;
                 }
 
-                // Create heritage classes
+                // Create Heritage classes
 
                 Individual aHeritage;
                 if (aRating.equals("Regional")) {
-                    aHeritage = regionalHeritage.createIndividual(NAMESPACE + aRegNo);
+                    aHeritage = RegionalHeritage.createIndividual(NAMESPACE + aRegNo);
                 } else if (aRating.equals("National")) {
-                    aHeritage = nationalHeritage.createIndividual(NAMESPACE + aRegNo);
+                    aHeritage = NationalHeritage.createIndividual(NAMESPACE + aRegNo);
                 } else {
-                    aHeritage = internationalHeritage.createIndividual(NAMESPACE + aRegNo);
+                    aHeritage = InternationalHeritage.createIndividual(NAMESPACE + aRegNo);
                 }
-                aHeritage.addOntClass(heritage);
+                aHeritage.addOntClass(Heritage);
                 aHeritage.addLiteral(RDFS.label, aRegNo);
                 aHeritage.addLiteral(regNo, aRegNo);
                 aHeritage.addLiteral(address, aAddress);
@@ -574,7 +566,7 @@ public class OntCreator {
                     OperatorWithin within = OperatorWithin.local();
                     if (within.execute(point, geometry, SpatialReference.create("WGS84"), null)) {
                         aHeritage.addProperty(inCounty, countyIndiList.get(i));
-                        countyIndiList.get(i).addProperty(hasHeritages, heritage);
+                        countyIndiList.get(i).addProperty(hasHeritages, Heritage);
                     }
                 }
             }

@@ -10,7 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-
+/**
+ * Create ontologies
+ *
+ * @author  Baolei, Rajesh, Sourojit, xinying
+ */
 public class QueryHub {
 
     private OntModel model;

@@ -12,6 +12,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+/**
+ * Create ontologies
+ *
+ * @author  Baolei, Rajesh, Sourojit,xinying
+ */
 public class QueryWindow extends JFrame {
 
     private QueryHub hub;

@@ -6,6 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Create ontologies
+ *
+ * @author  Baolei, Rajesh, Sourojit
+ */
 public class FileUtils {
 
     public static final String COUNTY_PATH = "temp/county.ttl";

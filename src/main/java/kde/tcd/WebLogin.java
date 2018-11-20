@@ -16,6 +16,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ * Create ontologies
+ *
+ * @author  Baolei, Rajesh, Sourojit
+ */
 public class WebLogin extends JFrame implements ActionListener {
 	JLabel l1, l2, l3;
 	JTextField tf1;
