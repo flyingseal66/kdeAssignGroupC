@@ -6,13 +6,8 @@ PREFIX base: <http://www.gov.ie/groupC/NIAH#>
 
 SELECT ?c (count(?c) AS ?heritages) ?area
 WHERE {
-<<<<<<< Updated upstream
     ?heritage base:inCounty ?c.
     
-=======
-    ?heritag base:inCounty ?c.
-    ?heritag base:girlCount ?s.
->>>>>>> Stashed changes
     ?c base:area ?area
 }
 GROUP BY ?c ?area

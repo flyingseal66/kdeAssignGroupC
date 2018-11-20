@@ -5,11 +5,11 @@ package kde.tcd;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        //FileUtils.fetchData();
+        
 
-        OntCreator.createOntology();
-
-        QueryWindow window = new QueryWindow();
-        window.launch();
+    	//OntCreator.createOntology();
+    	WebLogin.WebLogin();
+        /*QueryWindow window = new QueryWindow();
+        window.launch();*/
     }
 }

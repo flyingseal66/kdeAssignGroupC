@@ -1,10 +1,12 @@
 package kde.tcd;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -81,8 +83,16 @@ public class QueryWindow extends JFrame {
                 resultTextArea.setText(resultTxt);
             }
         });
+        
+        try {
+            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("background.png")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.pack();
+        this.setVisible(true);
 
-        this.setTitle("Group 7 Query Graphic User Interface");
+        this.setTitle("Group 2 Query Graphic User Interface");
         this.getContentPane().setLayout(null);
         this.setBounds(100, 100, windowWidth, windowHeight);
         this.setResizable(false);

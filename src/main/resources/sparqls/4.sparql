@@ -4,28 +4,28 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX base: <http://www.gov.ie/groupC/NIAH#>
 
-SELECT (?count1 - ?count2 AS ?difference) (?count1 AS ?max) (?count2 AS ?min)
+
+
+SELECT ?County1 ?County2 (?count1 - ?count2 AS ?difference) 
 WHERE{
 {
-    SELECT ?c1 (SUM(?b1) AS ?count1) ?area1
-    WHERE {
-        ?heritage base:inCounty ?c1.
-        ?heritage base:boyCount ?b1.
-        ?c1 base:area ?area1.
-    }
-    GROUP BY ?c1 ?area1
-    ORDER BY DESC(?area1)
-    LIMIT 1
+    SELECT ?County1 (COUNT(?heritage) AS ?count1)
+WHERE {
+    ?heritage base:inCounty ?County1.
+}
+GROUP BY ?County1
+ORDER BY DESC (?count1)
+
 }
 {
-   SELECT ?c2 (SUM(?b2) AS ?count2) ?area2
-    WHERE {
-        ?heritage base:inCounty ?c2.
-        ?heritage base:boyCount ?b2.
-        ?c2 base:area ?area2.
-    }
-    GROUP BY ?c2 ?area2
-    ORDER BY ?area2
-    LIMIT 1
+   SELECT ?County2 (COUNT(?heritage) AS ?count2)
+WHERE {
+    ?heritage base:inCounty ?County2.
 }
+GROUP BY ?County2
+ORDER BY DESC (?count2)
+
 }
+FILTER ( ?difference > 0 )
+}
+

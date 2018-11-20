@@ -4,10 +4,10 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX base: <http://www.gov.ie/groupC/NIAH#>
 
-SELECT ?c (COUNT(?heritage) AS ?count)
+SELECT ?County (COUNT(?heritage) AS ?count)
 WHERE {
-    ?heritage base:inCounty ?c.
+    ?heritage base:inCounty ?County.
 }
-GROUP BY ?c
+GROUP BY ?County
 ORDER BY DESC (?count)
 LIMIT 1

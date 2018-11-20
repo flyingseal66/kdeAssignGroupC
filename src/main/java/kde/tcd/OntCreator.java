@@ -32,8 +32,6 @@ public class OntCreator {
         ontology.addProperty(DCTerms.creator, "Rajesh");
         ontology.addProperty(DCTerms.date, "15/11/2018");
         ontology.addProperty(OWL2.versionInfo, "1.0.0");
-        // Resource image = ontModel.createResource("https://drive.google.com/open?id=15B6U7PdfvPCvw7Kj8xIzpj4xdBl2-BL6");
-        //ontology.addProperty(DCTerms.description, image);
         ontology.addProperty(DCTerms.description, comment);
 
         // geogLocation Class
@@ -565,6 +563,7 @@ public class OntCreator {
                 aHeritage.addLiteral(xCoord, aXCoord);
                 aHeritage.addLiteral(yCoord, aYCoord);
                 aHeritage.addLiteral(imageLink, aImageLink);
+                aHeritage.addProperty(withBuildingType, aBuildingType);
 
 
                 for (int i = 0; i < countyInfoList.size(); i++) {
