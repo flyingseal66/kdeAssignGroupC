@@ -1,1 +1,0 @@
-8.List counties with national heritage density in descending order.
