@@ -455,6 +455,7 @@ public class OntCreator {
 
             for (CSVRecord record : records) {
                 String aRegNo = record.get(0);
+                String aHeritageName = record.get(1);
                 String aAddress = record.get(3) + " " + record.get(4) + " " + record.get(5);
                 String aComposition = record.get(10);
                 String aAppraisal = record.get(11);
@@ -510,25 +511,25 @@ public class OntCreator {
                // Class.forName(key).getClass();
                 Individual aBuildingType;
                 if(key == null) continue;
-                if (key.equals("Church")) {
+                if (key.equals("church")) {
                     aBuildingType = Church.createIndividual();
-                } else if (key.equals("Bridge")) {
+                } else if (key.equals("bridge")) {
                     aBuildingType = Bridge.createIndividual();
-                } else if (key.equals("Garden")) {
+                } else if (key.equals("garden")) {
                     aBuildingType = Garden.createIndividual();
-                } else if (key.equals("House")) {
+                } else if (key.equals("house")) {
                     aBuildingType = House.createIndividual();
-                } else if (key.equals("Industry")) {
+                } else if (key.equals("industry")) {
                     aBuildingType = Industry.createIndividual();
-                } else if (key.equals("Misc")) {
+                } else if (key.equals("misc")) {
                     aBuildingType = Misc.createIndividual();
-                } else if (key.equals("School")) {
+                } else if (key.equals("school")) {
                     aBuildingType = School.createIndividual();
-                } else if (key.equals("Sports")) {
+                } else if (key.equals("sports")) {
                     aBuildingType = Sports.createIndividual();
-                }else if (key.equals("Station")) {
+                }else if (key.equals("station")) {
                     aBuildingType = Station.createIndividual();
-                }else if (key.equals("Walls")) {
+                }else if (key.equals("walls")) {
                     aBuildingType = Walls.createIndividual();
                 } else {
                     continue;
@@ -545,6 +546,7 @@ public class OntCreator {
                     aHeritage = InternationalHeritage.createIndividual(NAMESPACE + aRegNo);
                 }
                 aHeritage.addOntClass(Heritage);
+                aHeritage.addLiteral(heritageName, aHeritageName);
                 aHeritage.addLiteral(RDFS.label, aRegNo);
                 aHeritage.addLiteral(regNo, aRegNo);
                 aHeritage.addLiteral(address, aAddress);
@@ -552,6 +554,8 @@ public class OntCreator {
                 aHeritage.addLiteral(appraisal, aAppraisal);
                 aHeritage.addLiteral(dateFrom, aDateFrom);
                 aHeritage.addLiteral(dateTo, aDateTo);
+                aHeritage.addLiteral(originalType, aoriginalType);
+                aHeritage.addLiteral(rating, aRating);
                 aHeritage.addLiteral(xCoord, aXCoord);
                 aHeritage.addLiteral(yCoord, aYCoord);
                 aHeritage.addLiteral(imageLink, aImageLink);
