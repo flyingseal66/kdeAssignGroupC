@@ -258,7 +258,7 @@ public class OntCreator {
         inBuildingType.addLabel("inBuildingType", null);
         inBuildingType.addComment("Element of Building type of Heritage monument", null);
         inBuildingType.setDomain(Heritage);
-        inBuildingType.setRange(BuildingType);
+        inBuildingType.setRange(XSD.xstring);
 
         // Subclasses setup
         InternationalHeritage.addSuperClass(Heritage);
