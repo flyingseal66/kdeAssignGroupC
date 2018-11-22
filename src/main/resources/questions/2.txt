@@ -1,1 +1,1 @@
-2.Number of heritages in each county by area.
+2.Number of heritages including density in each county by area.

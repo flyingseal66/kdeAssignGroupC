@@ -1,8 +1,11 @@
-package kde.tcd;
+package com.kde.gui;
 
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.ModelFactory;
+
+import com.kde.ontologies.FileUtils;
+
 import org.apache.jena.query.Query;
 
 import java.io.*;

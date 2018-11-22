@@ -26,6 +26,7 @@ GROUP BY ?County2
 ORDER BY DESC (?count2)
 
 }
-FILTER ( ?difference > 0 )
+FILTER ( xsd:int(?count1 - ?count2) > 0 )
+
 }
 

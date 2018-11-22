@@ -1,4 +1,4 @@
-package kde.tcd;
+package com.kde.ontologies;
 
 import java.io.InputStream;
 import java.net.URI;

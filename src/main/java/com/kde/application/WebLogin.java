@@ -1,4 +1,4 @@
-package kde.tcd;
+package com.kde.application;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,6 +16,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.kde.gui.QueryWindow;
+import com.kde.ontologies.OntCreator;
+
 /**
  * Create ontologies
  *
@@ -28,8 +31,8 @@ public class WebLogin extends JFrame implements ActionListener {
 	JPasswordField p1;
 
 	WebLogin() {
-		final JFrame frame = new JFrame("Group 2 SPARQL Login form");
-		l1 = new JLabel("Group 2 SPARQL Login form");
+		final JFrame frame = new JFrame("Group C SPARQL Login form");
+		l1 = new JLabel("Group C SPARQL Login form");
 		l1.setForeground(Color.WHITE);
 		l1.setFont(new Font("Serif", Font.BOLD, 25));
 
@@ -74,7 +77,13 @@ public class WebLogin extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent ae) {
 				String uname = tf1.getText();
 				String pass = p1.getText();
-				if (uname.equals("group2") && pass.equals("1")) {
+				if (uname.equals("groupc") && pass.equals("1")) {
+					/*try {
+						OntCreator.createOntology();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}*/
 					QueryWindow window = new QueryWindow();
 			        window.launch();
 				} else {

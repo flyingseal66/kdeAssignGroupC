@@ -5,12 +5,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX base: <http://www.gov.ie/groupC/NIAH#>
 
 
-SELECT ?c ((SUM(?a))/?a AS ?density)
-WHERE {
-    ?heritage base:inCounty ?c.
-    ?c base:area ?a
-}
-GROUP BY ?c ?a
-ORDER BY DESC (?density)
-LIMIT 1
 
+SELECT ((COUNT(?heritage))/?a AS ?nationalHeritageCount) ?c
+WHERE {
+  ?heritage base:inCounty ?c.
+  ?heritage base:rating "National".
+  ?c base:area ?a
+} GROUP BY ?c ?a
+order by ?nationalHeritageCount
+LIMIT 1

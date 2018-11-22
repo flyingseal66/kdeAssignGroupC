@@ -1,4 +1,4 @@
-package kde.tcd;
+package com.kde.gui;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -97,7 +97,7 @@ public class QueryWindow extends JFrame {
         this.pack();
         this.setVisible(true);
 
-        this.setTitle("Group 2 Query Graphic User Interface");
+        this.setTitle("Group C Query Graphic User Interface");
         this.getContentPane().setLayout(null);
         this.setBounds(100, 100, windowWidth, windowHeight);
         this.setResizable(false);

@@ -1,4 +1,4 @@
-package kde.tcd;
+package com.kde.ontologies;
 
 import com.esri.core.geometry.*;
 import org.apache.commons.csv.CSVFormat;
