@@ -7,7 +7,7 @@ PREFIX base: <http://www.gov.ie/groupC/NIAH#>
 SELECT *
 where {
     ?heritage base:inCounty ?c.
-    ?heritage base:inBuildingType "Church".
+    ?heritage base:inBuildingType "Bridge".
     ?heritage base:heritageName ?n
     {SELECT ?c
      WHERE
@@ -16,11 +16,10 @@ where {
          WHERE {
           ?heritage base:inCounty ?c.
           ?c base:area ?a
+          filter (?a > 3000)
          }
          GROUP BY ?c ?a
          ORDER BY DESC (?a)
-         LIMIT 2
      }
-     LIMIT 1}
+     }
 }
-

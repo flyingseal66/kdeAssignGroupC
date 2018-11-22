@@ -1,4 +1,4 @@
-<church>
+<Church>
 church/chapel
 church hall/parish hall
 cathedral
@@ -19,20 +19,20 @@ oratory
 synagogue
 masonic hall
 presbyterian church
-</church>
-<bridge>
+</Church>
+<Bridge>
 bridge
 foot bridge
 bridge, railway
 bridge, road
-</bridge>
-<garden>
+</Bridge>
+<Garden>
 walled garden
 garden structure misc
 garden temple
 garden
-</garden>
-<house>
+</Garden>
+<House>
 house
 presbytery/parochial/curate's house
 farm house
@@ -108,8 +108,8 @@ still house
 lecturer's house
 sweat house
 Orange Hall
-</house>
-<industry>
+</House>
+<Industry>
 post box
 mill (water)
 bank/financial institution
@@ -197,8 +197,8 @@ waterpump
 petrol pump
 mill, food processing
 lime kiln
-</industry>
-<misc>
+</Industry>
+<Misc>
 monument
 hotel
 building misc
@@ -274,8 +274,8 @@ Grave monument
 Lych gate
 monument, unassigned
 spa well
-</misc>
-<school>
+</Misc>
+<School>
 school
 college
 faculty building
@@ -287,14 +287,14 @@ library/archive
 exam hall
 charter school
 institute of technology
-crèche/pre-school
-</school>
-<sports>
+crÔøΩche/pre-school
+</School>
+<Sports>
 handball alley
 sports hall/centre/gymnasium
 sports ground
-</sports>
-<station>
+</Sports>
+<Station>
 garda station/constabulary barracks
 coastguard station
 railway station
@@ -310,12 +310,12 @@ gas fired power station
 customs station
 meteorological station
 semaphore station
-</station>
-<walls>
+</Station>
+<Walls>
 gates/railings/walls
 demesne walls/gates/railings
 town/city walls
 prison walls
 walls/gates/railings
 blast walls
-</walls>
+</Walls>

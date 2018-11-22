@@ -254,6 +254,12 @@ public class OntCreator {
         withBuildingType.setDomain(Heritage);
         withBuildingType.setRange(BuildingType);
 
+        DatatypeProperty inBuildingType = ontModel.createDatatypeProperty(NAMESPACE + "inBuildingType");
+        inBuildingType.addLabel("inBuildingType", null);
+        inBuildingType.addComment("Element of Building type of Heritage monument", null);
+        inBuildingType.setDomain(Heritage);
+        inBuildingType.setRange(BuildingType);
+
         // Subclasses setup
         InternationalHeritage.addSuperClass(Heritage);
         NationalHeritage.addSuperClass(Heritage);
@@ -348,6 +354,7 @@ public class OntCreator {
         Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, location, 1));
         Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, inCounty, 1));
         Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, withBuildingType, 1));
+        Heritage.addSuperClass(ontModel.createCardinalityRestriction(null, inBuildingType, 1));
 
 
 
@@ -466,6 +473,7 @@ public class OntCreator {
                 String aImageLink = record.get(22);
                 String aoriginalType = record.get(15);
                 String aRating = record.get(14);
+                //String ainBuildingType = record.get(15);
                 //String aLocation = record.get();
                 if(record.get(20) == null || record.get(21) == null || record.get(20).trim().equals("") || record.get(21).trim().equals("")) {
                     //System.out.println("Get a null value, record Id:" + aRegNo);
@@ -511,25 +519,25 @@ public class OntCreator {
                // Class.forName(key).getClass();
                 Individual aBuildingType;
                 if(key == null) continue;
-                if (key.equals("church")) {
+                if (key.equals("Church")) {
                     aBuildingType = Church.createIndividual();
-                } else if (key.equals("bridge")) {
+                } else if (key.equals("Bridge")) {
                     aBuildingType = Bridge.createIndividual();
-                } else if (key.equals("garden")) {
+                } else if (key.equals("Garden")) {
                     aBuildingType = Garden.createIndividual();
-                } else if (key.equals("house")) {
+                } else if (key.equals("House")) {
                     aBuildingType = House.createIndividual();
-                } else if (key.equals("industry")) {
+                } else if (key.equals("Industry")) {
                     aBuildingType = Industry.createIndividual();
-                } else if (key.equals("misc")) {
+                } else if (key.equals("Misc")) {
                     aBuildingType = Misc.createIndividual();
-                } else if (key.equals("school")) {
+                } else if (key.equals("School")) {
                     aBuildingType = School.createIndividual();
-                } else if (key.equals("sports")) {
+                } else if (key.equals("Sports")) {
                     aBuildingType = Sports.createIndividual();
-                }else if (key.equals("station")) {
+                }else if (key.equals("Station")) {
                     aBuildingType = Station.createIndividual();
-                }else if (key.equals("walls")) {
+                }else if (key.equals("Walls")) {
                     aBuildingType = Walls.createIndividual();
                 } else {
                     continue;
@@ -546,10 +554,10 @@ public class OntCreator {
                     aHeritage = InternationalHeritage.createIndividual(NAMESPACE + aRegNo);
                 }
                 aHeritage.addOntClass(Heritage);
-                aHeritage.addLiteral(heritageName, aHeritageName);
+                aHeritage.addLiteral(heritageName, aHeritageName == null || aHeritageName.trim().equals("") ? "no name provided" : aHeritageName);
                 aHeritage.addLiteral(RDFS.label, aRegNo);
                 aHeritage.addLiteral(regNo, aRegNo);
-                aHeritage.addLiteral(address, aAddress);
+                aHeritage.addLiteral(address, aAddress.trim().equals("") ? "no address provided" : aAddress);
                 aHeritage.addLiteral(composition, aComposition);
                 aHeritage.addLiteral(appraisal, aAppraisal);
                 aHeritage.addLiteral(dateFrom, aDateFrom);
@@ -560,6 +568,7 @@ public class OntCreator {
                 aHeritage.addLiteral(yCoord, aYCoord);
                 aHeritage.addLiteral(imageLink, aImageLink);
                 aHeritage.addProperty(withBuildingType, aBuildingType);
+                aHeritage.addLiteral(inBuildingType,key);
 
 
                 for (int i = 0; i < countyInfoList.size(); i++) {
@@ -588,5 +597,9 @@ public class OntCreator {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        OntCreator.createOntology();
     }
 }
