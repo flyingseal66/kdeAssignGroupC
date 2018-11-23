@@ -1,32 +1,26 @@
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX base: <http://www.gov.ie/groupC/NIAH#>
+PREFIX  xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX  rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX  owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX  base: <http://www.gov.ie/groupC/NIAH#>
 
-
-
-SELECT ?County1 ?County2 (?count1 - ?count2 AS ?difference) 
-WHERE{
-{
-    SELECT ?County1 (COUNT(?heritage) AS ?count1)
-WHERE {
-    ?heritage base:inCounty ?County1.
-}
-GROUP BY ?County1
-ORDER BY DESC (?count1)
-
-}
-{
-   SELECT ?County2 (COUNT(?heritage) AS ?count2)
-WHERE {
-    ?heritage base:inCounty ?County2.
-}
-GROUP BY ?County2
-ORDER BY DESC (?count2)
-
-}
-FILTER ( xsd:int(?count1 - ?count2) > 0 )
-
-}
-
+SELECT  ?County1 ?County2 (( ?count1 - ?count2 ) AS ?heritageDifference) (( ?area1 - ?area2 ) AS ?areaDifference)
+WHERE
+  { { SELECT  ?County1 (COUNT(?heritage) AS ?count1) ?area1
+      WHERE
+        { ?heritage  base:inCounty  ?County1 .
+          ?County1  base:area      ?area1
+        }
+      GROUP BY ?County1 ?area1
+      ORDER BY DESC(?count1)
+    }
+    { SELECT  ?County2 (COUNT(?heritage) AS ?count2) ?area2
+      WHERE
+        { ?heritage  base:inCounty  ?County2 .
+          ?County2  base:area      ?area2
+        }
+      GROUP BY ?County2 ?area2
+      ORDER BY DESC(?count2)
+    }
+    FILTER ( xsd:int(( ?count1 - ?count2 )) > 0 )
+  }

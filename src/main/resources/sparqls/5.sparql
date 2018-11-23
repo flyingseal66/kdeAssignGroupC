@@ -1,13 +1,14 @@
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX base: <http://www.gov.ie/groupC/NIAH#>
+PREFIX  xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX  rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX  owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX  base: <http://www.gov.ie/groupC/NIAH#>
 
-SELECT ?County (COUNT(?heritage) AS ?count)
-WHERE {
-    ?heritage base:inCounty ?County.
-}
-GROUP BY ?County
-ORDER BY DESC (?count)
-LIMIT 1
+SELECT  ?county (COUNT(?heritage) AS ?count) (( COUNT(?heritage) / ?area ) AS ?density)
+WHERE
+  { ?heritage  base:inCounty  ?county .
+    ?county   base:area      ?area
+  }
+GROUP BY ?county ?area
+ORDER BY DESC(?count)
+LIMIT   1

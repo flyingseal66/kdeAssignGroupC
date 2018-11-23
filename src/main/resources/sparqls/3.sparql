@@ -1,16 +1,16 @@
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX base: <http://www.gov.ie/groupC/NIAH#>
+PREFIX  xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX  rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX  owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX  base: <http://www.gov.ie/groupC/NIAH#>
 
-SELECT ?c (?e AS ?BuildingType) (COUNT(DISTINCT ?s) / ?a as ?density)
-WHERE {
-    ?s base:inCounty ?c.
-    ?c base:area ?a.
-    ?e rdfs:subClassOf base:BuildingType.
-    ?s base:withBuildingType ?ei.
-    ?ei a ?e.
-}
-GROUP BY ?e ?c ?a
-ORDER BY ?c
+SELECT  ?county (?e AS ?BuildingType) (( COUNT(DISTINCT ?withBuildingType) / ?area ) AS ?density)
+WHERE
+  { ?withBuildingType   base:inCounty         ?county.
+    ?county   base:area             ?area.
+    ?e   rdfs:subClassOf       base:BuildingType.
+    ?withBuildingType   base:withBuildingType  ?ei.
+    ?ei  rdf:type              ?e
+  }
+GROUP BY ?e ?county ?area
+ORDER BY ?county

@@ -78,12 +78,12 @@ public class WebLogin extends JFrame implements ActionListener {
 				String uname = tf1.getText();
 				String pass = p1.getText();
 				if (uname.equals("groupc") && pass.equals("1")) {
-					/*try {
+					try {
 						OntCreator.createOntology();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}*/
+					}
 					QueryWindow window = new QueryWindow();
 			        window.launch();
 				} else {
